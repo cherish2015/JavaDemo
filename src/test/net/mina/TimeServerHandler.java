@@ -1,12 +1,18 @@
 package test.net.mina;
 
+import java.util.Date;
+
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import test.ITest;
 
 public class TimeServerHandler implements IoHandler, ITest {
+	
+	private static Logger log = LoggerFactory.getLogger("HandlerLogger");
 
 	@Override
 	public void test() {
@@ -15,22 +21,20 @@ public class TimeServerHandler implements IoHandler, ITest {
 	}
 
 	@Override
-	public void exceptionCaught(IoSession arg0, Throwable arg1)
+	public void exceptionCaught(IoSession arg0, Throwable e)
 			throws Exception {
-		// TODO Auto-generated method stub
-
+		log.error(e.getMessage(), e);
 	}
 
 	@Override
-	public void messageReceived(IoSession arg0, Object arg1) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void messageReceived(IoSession session, Object message) throws Exception {
+		log.info("messageReceived:"+(String) message);
+		session.write(new Date());
 	}
 
 	@Override
-	public void messageSent(IoSession arg0, Object arg1) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void messageSent(IoSession arg0, Object message) throws Exception {
+		log.info("messageSent:"+ message.toString()+"\n");
 	}
 
 	@Override

@@ -14,22 +14,24 @@ import org.slf4j.LoggerFactory;
 
 import test.ITest;
 
+@SuppressWarnings("unused")
 public class MinaServerTest implements ITest {
 	
-	private static Logger log = LoggerFactory.getLogger(MinaServerTest.class);
+	private static Logger log = LoggerFactory.getLogger("minaLogger");
 
 	public static void main(String[] args) {
+		new MinaServerTest().test();
 	}
 
 	@Test
 	@Override
 	public void test() {
 		NioSocketAcceptor acceptor = new NioSocketAcceptor(4);
-		acceptor.getFilterChain().addLast("logger", new LoggingFilter());
 		acceptor.getFilterChain().addLast(
 				"codex",
 				new ProtocolCodecFilter(new TextLineCodecFactory(
 						Constants.charset)));
+		//acceptor.getFilterChain().addLast("logger", new LoggingFilter());
 		acceptor.setHandler(new TimeServerHandler());
 		acceptor.getSessionConfig().setReadBufferSize(1024*2);
 		acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 20);
