@@ -31,6 +31,14 @@ public class BaseCodecUtil {
 		log.info(content);
 		content = BaseCodecUtil.decodeB64(content);
 		log.info(content);
+		
+		log.error("--------------");
+		content = BaseCodecUtil.encodeB32(content);
+		log.info(content);
+		content = BaseCodecUtil.encodeB32(content);
+		log.info(content);
+		content = BaseCodecUtil.encodeB32(content);
+		log.info(content);
 	}
 	
 	public static String encodeB64(String content) throws Exception{
