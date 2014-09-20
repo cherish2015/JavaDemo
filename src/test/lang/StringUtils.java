@@ -1,4 +1,4 @@
-package test.util;
+package test.lang;
 
 public class StringUtils {
 	
