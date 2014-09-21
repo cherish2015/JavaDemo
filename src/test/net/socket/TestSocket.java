@@ -37,7 +37,7 @@ public class TestSocket implements ITest {
 				invoke(client);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class TestSocket implements ITest {
 					os.writeObject(user);
 					os.flush();
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				} finally{
 					try {
 						if (is != null) {
@@ -72,7 +72,7 @@ public class TestSocket implements ITest {
 							os.close();
 						}
 					} catch (IOException e) {
-						e.printStackTrace();
+						log.error(e.getMessage(), e);
 					}
 				}
 			}
@@ -82,20 +82,4 @@ public class TestSocket implements ITest {
 }
 
 
-class User{
-	private String username;
-	private String password;
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-}
+
