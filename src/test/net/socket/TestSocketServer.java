@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 
 import test.ITest;
 
-public class TestSocket implements ITest {
+public class TestSocketServer implements ITest {
 	
-	private static Logger log = LoggerFactory.getLogger(TestSocket.class);
+	private static Logger log = LoggerFactory.getLogger(TestSocketServer.class);
 
 	@Test
 	@Override
@@ -32,6 +32,7 @@ public class TestSocket implements ITest {
 			server = new ServerSocket();
 			server.setReuseAddress(true);
 			server.bind(new InetSocketAddress("localhost", 10086));
+			log.info("socket server start,listenning port 10086");
 			while(true){
 				Socket client = server.accept();
 				invoke(client);
@@ -54,7 +55,7 @@ public class TestSocket implements ITest {
 					
 					Object obj = is.readObject();
 					User user = (User)obj;
-					log.info(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));
+					System.err.println(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));
 					
 					user.setUsername(user.getUsername()+"_new");
 					user.setPassword(user.getPassword()+"_new");
