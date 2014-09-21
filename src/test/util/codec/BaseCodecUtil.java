@@ -1,6 +1,5 @@
 package test.util.codec;
 
-
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
