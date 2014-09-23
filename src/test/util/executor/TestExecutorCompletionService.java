@@ -26,9 +26,9 @@ public class TestExecutorCompletionService implements ITest {
 			int n = (int)(Math.random()*1000);
 			tasks.add(new Exp(m, n));
 		}
-		ExecutorCompletionService service = new ExecutorCompletionService(executor); 
+		ExecutorCompletionService<Double> service = new ExecutorCompletionService<Double>(executor); 
 		for (Callable<Double> task : tasks) {
-			service.submit(task);
+			service.submit((Callable<Double>) task);
 		}
 		Lock lock = new ReentrantLock();
 		for (int i = 0; i < tasks.size(); i++) {
