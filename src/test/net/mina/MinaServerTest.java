@@ -41,7 +41,7 @@ public class MinaServerTest implements ITest {
 			log.info("server start");
 			log.info("listen port {}",Constants.ServerPort);
 		} catch (IOException e) {
-			log.error(e.getMessage(), e);
+			log.warn(e.getMessage(), e);
 		}
 	}
 
